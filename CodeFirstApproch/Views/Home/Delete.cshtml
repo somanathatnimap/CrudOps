@@ -1,0 +1,43 @@
+﻿@model CodeFirstApproch.Models.Student
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Student</h4>
+    <hr />
+    <table border="1">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.age)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.age)
+            </td>
+
+        </tr>
+    </table>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
