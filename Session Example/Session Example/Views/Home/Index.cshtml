@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h3>View Data</h3> @ViewData["var1"];
+<h3>Temp Data</h3> @TempData["var2"];
+<h3>View Bag</h3> @ViewBag.var3;
+<h3>session</h3> @Session["var4"];
+
+@{ foreach(var i in (string[])Session["var5"])
+    {
+<ul>@i</ul>
+
+}
+}
