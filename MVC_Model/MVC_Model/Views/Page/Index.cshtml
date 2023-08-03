@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@model MVC_Model.Models.Employee
+<h2>Index</h2>
+
+<p>Hellow world </p>
+@DateTime.Now
+@{
+    var my = "my name is soma";
+
+}
+@my
+
+
+@{
+    int i = 20;
+    int j = 21;
+    var g = " is greATEWr";
+    if (i > j)
+    {
+        @i @g;
+    }
+    else
+    {
+        @j @g
+    }
+}
+
+@{
+    string ap = Request["text1"];
+    string ap1 = Request["text2"];
+    int ans = ap.AsInt() + ap1.AsInt();
+
+}
+<form action="" method="post">
+    <input name="text1" /> + <input name="text2" /> = @ans
+    <button name="submit" value="submit">Add</button>
+
+
+
+</form>
+<dt> @myhelper(i)</dt>
+@{
+    int[] arr = { 1, 2, 3, 4, 5 };
+    foreach (int array in arr)
+    {
+        @array
+    }
+}
+
+@{ bool isTrue = true;
+}
+
+@if (isTrue)
+{
+    var tru = "it is true";
+    @tru
+}
+
+@(isTrue ? "it is really true":"it is not true")
+</br>
+ID: @Model.id </br>
+NAME:@Model.name </br>
+ADDRESS:@Model.address </br>
+
+@helper myhelper(int a)
+{
+    @a
+
+}
+@{
+    int num = 2;
+}
+
+@myhelper(num)
+
+Name: @Html.TextBox("text1", "write", new { @class = "my class", @readonly = "readonly" })
+
+@{
+    var squr = Model.id * Model.id;
+}
+
+@Html.TextBoxFor(m => squr)
+@Html.Label(Model.name)
+@Html.DisplayName(Model.address)
+@Html.DisplayText("name")
+
+@Html.EditorFor(x => Model.address)
+
+<img height="20px" width="30px">
+@CustomHelper.Image("ht tps://imgv3.fotor.com/images/side/create-various-types-of-random-image-using-fotor-random-image-generator.jpg", "img")
+
+@ViewBag.myprop @ViewData["mydata"]
+
+@foreach (string s in ViewBag.mylist)
+{
+    @s;
+    <br />
+
+}
+@foreach (string item in (List<string>)ViewData["view"])
+{
+    <ul>
+        <li>@item</li>
+    </ul>
+
+}
