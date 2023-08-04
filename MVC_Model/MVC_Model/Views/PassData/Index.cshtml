@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+
+@using (Html.BeginForm("postByFormcollection", "PassData"))
+            {
+                <label>First Name : </label><input type="text" name="firstname" />
+                <input type="text" name="lastname" />
+                <button type="submit" value="submit" >Submit</button>
+            }
