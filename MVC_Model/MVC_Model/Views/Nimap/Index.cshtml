@@ -1,0 +1,16 @@
+﻿@model MVC_Model.Models.Nimap
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Nimap", FormMethod.Post))
+{
+
+@Html.TextBoxFor(x => x.name); <br />
+@Html.TextAreaFor(x => x.address); <br />
+<button value="submit">submit</button>
+}
+@Html.ValidationSummary()
+            

@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Validation";
+}
+@model MVC_Model.Models.PassData
+<h2>Validation</h2>
+
+@using (Html.BeginForm("Validation", "PassData", FormMethod.Post))
+{
+    @Html.TextBoxFor(x => x.firstname);
+    @Html.ValidationMessage("firstname");<br />
+    @Html.TextBoxFor(x => x.lastname);
+    @Html.ValidationMessage("lastname");<br />
+    @Html.TextBoxFor(x => x.email);
+    @Html.ValidationMessage("email");<br />
+    @Html.TextBoxFor(x => x.age);
+    @Html.ValidationMessage("age");<br />
+
+
+    @Html.ValidationSummary();
+    <button name="submit" value="submit">submit</button>
+}
+
+
