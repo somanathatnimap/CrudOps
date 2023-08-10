@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Product_CRUD.Models.categories>
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Categories Of Products...!</h2>
+<a href="@Url.Action("Categories","Home")" class="btn btn-outline-dark">Create New</a>
+
+@*table started*@
+
+<div class="container mt-5">
+    <h2 class="mb-4">Select Categories</h2>
+    <p style="color:forestgreen">@TempData["InsertMessage"]</p>
+    <p style="color:red">@TempData["InsertFailMessage"]</p>
+    <p style="color:forestgreen">@TempData["UpdateMessage"]</p>
+    <p style="color:red">@TempData["UpdateFailedMessage"]</p>
+    <p style="color:forestgreen">@TempData["DeleteMessage"]</p>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Category Description</th>
+                <th scope="col">Details</th>
+                <th scope="col">Activate/Deactivate</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(ModelItem => item.id)</th>
+                    <td>@Html.DisplayFor(model => item.category_name)</td>
+                    <td>@Html.DisplayFor(model => item.category_description)</td>
+                    
+                    <td>
+                        <a href="@Url.Action("product_index","Home",new {id=item.id})" class="btn btn-outline-info">View</a>
+                    </td>
+                    <td><button class="btn btn-primary">Activated</button></td>
+                    <td>
+                        <a href="@Url.Action("update_categories","Home",new {id=item.id})" class="btn btn-outline-info">Update</a>
+                    <td>
+                        <a href="@Url.Action("delete_categories","Home",new {id=item.id})" class="btn btn-outline-danger">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
