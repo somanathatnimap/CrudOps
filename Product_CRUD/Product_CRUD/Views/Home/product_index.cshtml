@@ -8,21 +8,20 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@Html.Raw(TempData["create"])
+@Html.Raw(TempData["update"])
+@Html.Raw(TempData["delete"])
+
+
 <h2>Products...!</h2>
 <a href="@Url.Action("products","Home")" class="btn btn-outline-dark">Create New</a>
 @*<a href="@Url.Action("update_categories","Home",new {id=})" class="btn btn-outline-info">Update</a>*@
 
 
 @*table started*@
-
 <div class="container mt-5">
-    <h2 class="mb-4">Select Product</h2>
-    <p style="color:forestgreen">@TempData["InsertMessage"]</p>
-    <p style="color:red">@TempData["InsertFailMessage"]</p>
-    <p style="color:forestgreen">@TempData["UpdateMessage"]</p>
-    <p style="color:red">@TempData["UpdateFailedMessage"]</p>
-    <p style="color:forestgreen">@TempData["DeleteMessage"]</p>
-
+    <h2 class="mb-4"><span style="color:forestgreen"> @TempData["categories_name"]</span> Category</h2>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
             <tr>
@@ -44,10 +43,10 @@
                     <td>@Html.DisplayFor(model => item.Product_price)</td>
                     <td>@Html.DisplayFor(model => item.Product_description)</td>
                     <td>
-                        <a href="@Url.Action("update_categories","Home",new {id=item.id})" class="btn btn-outline-info">Update</a>
+                        <a href="@Url.Action("product_update","Home",new {id=item.id})" class="btn btn-outline-info">Update</a>
                     </td>
                     <td>
-                        <a href="@Url.Action("delete_categories","Home",new {id=item.id})" class="btn btn-outline-danger">Delete</a>
+                        <a href="@Url.Action("product_delete","Home",new {id=item.id})" class="btn btn-outline-danger">Delete</a>
                     </td>
 
                 </tr>

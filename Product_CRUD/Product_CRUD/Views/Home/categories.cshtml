@@ -3,9 +3,7 @@
 @{
     ViewBag.Title = "categories";
 }
-
 <h2>Add Categories</h2>
-
 @using (Html.BeginForm())
 {
     <div class="mb-3">
@@ -16,6 +14,7 @@
         <label for="category_description" class="form-label">Category Description</label>
         <input type="text" class="form-control" name="category_description">
     </div>
+    <p style="color:red">@TempData["Insert"]</p>
     <button type="submit" class="btn btn-primary">Submit</button>
 }
 

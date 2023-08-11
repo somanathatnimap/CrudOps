@@ -36,16 +36,17 @@ namespace Product_CRUD.Controllers
                 int a=db.SaveChanges();
                 if(a>0)
                 {
-                    TempData["InsertMessage"] = "Category Added Succesfully...!";
-                    return RedirectToAction("Index");
+                    TempData["Insert"]  = "<script>alert('Data Inserted Succesfully...!')</script>";
                 }
+                
             }
-            else 
+            else
             {
-                TempData["InsertFailMessage"] = "Category Not Added...!";
-                return RedirectToAction("Index");
+                TempData["Insert"] = "Please Insert Valid Data";
+                return View();
             }
-            return View();
+
+            return RedirectToAction("Index");
         }
         public ActionResult update_categories(int id)
         {
@@ -59,12 +60,10 @@ namespace Product_CRUD.Controllers
             {
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["UpdateMessage"] = "Category Updated Succesfully...!";
                 return RedirectToAction("Index");
             }
             else
             {
-                TempData["UpdateFailedMessage"] = "Category Not Updated...!";
                 return RedirectToAction("Index");
             }
         }
@@ -80,7 +79,6 @@ namespace Product_CRUD.Controllers
                 int a=db.SaveChanges();
             if (a > 0)
             {
-                TempData["DeleteMessage"] = "Category Deleted Succesfully...!";
                 return RedirectToAction("Index");
             }
             return View();
@@ -90,6 +88,8 @@ namespace Product_CRUD.Controllers
         {
             var p_data = db.products.Where(Model=>Model.categories_id==id).ToList();
             TempData["categories_id"] = id;
+            string categories_name = db.categories.Where(Model => Model.id==id ).Select(Model => Model.category_name).FirstOrDefault();
+            TempData["categories_name"] = categories_name;
             return View(p_data);
         }
         public ActionResult products()
@@ -101,12 +101,62 @@ namespace Product_CRUD.Controllers
         {
             if(ModelState.IsValid)
             {
+            products.categories_id = (int)TempData["categories_id"];
             db.products.Add(products);
-            db.SaveChanges();
-            return RedirectToAction("product_index");
+            int count=db.SaveChanges();
+                if (count > 0)
+                {
+                    TempData["create"] = "<script>alert('Product Inserted Succesfully...!')</script>";
+                     return RedirectToAction("product_index", "Home", new { id = products.categories_id });
+                }
+            }
+            else{
+                TempData["create"] = "<script>alert('Product Inserted Succesfully...!')</script>";
+                return View();
             }
             return View();
         }
+        public ActionResult product_update(int id)
+        {
+            var p_data = db.products.Where(Model => Model.id == id).FirstOrDefault();
+            return View(p_data);
+        }
+        [HttpPost]
+        public ActionResult product_update(Products products)
+        {
+            products.categories_id = (int)TempData["categories_id"];
+            db.Entry(products).State = EntityState.Modified;
+            var count=db.SaveChanges();
+            if (count > 0)
+            {
+                    TempData["update"]  = "<script>alert('Data Updated Succesfully...!')</script>";
+                return RedirectToAction("product_index", "Home", new { id = products.categories_id });
 
+            }
+            else
+            {
+                    TempData["update"]  = "<script>alert('Data Updated Succesfully...!')</script>";
+                return View();
+            }
+        }
+        public ActionResult product_delete(int id)
+        {
+            var p_data=db.products.Where(Model=>Model.id==id).FirstOrDefault();
+            return View(p_data);
+        }
+        [HttpPost]
+        public ActionResult product_delete(Products products)
+        {
+            db.Entry(products).State = EntityState.Deleted;
+            int count=db.SaveChanges();
+            if(count > 0)
+            {
+               TempData["delete"]  = "<script>alert('Data Deleted Succesfully...!')</script>";
+
+                return RedirectToAction("categories", "Home");
+              
+            }
+            return View();   
+        }
     }
 }

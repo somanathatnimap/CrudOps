@@ -127,6 +127,8 @@
     <Content Include="Views\Home\delete_categories.cshtml" />
     <Content Include="Views\Home\product_index.cshtml" />
     <Content Include="Views\Home\products.cshtml" />
+    <Content Include="Views\Home\product_update.cshtml" />
+    <Content Include="Views\Home\product_delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
