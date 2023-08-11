@@ -89,6 +89,7 @@ namespace Product_CRUD.Controllers
         public ActionResult product_index(int id)
         {
             var p_data = db.products.Where(Model=>Model.categories_id==id).ToList();
+            TempData["categories_id"] = id;
             return View(p_data);
         }
         public ActionResult products()
@@ -98,8 +99,12 @@ namespace Product_CRUD.Controllers
         [HttpPost]
         public ActionResult products(Products products)
         {
+            if(ModelState.IsValid)
+            {
             db.products.Add(products);
             db.SaveChanges();
+            return RedirectToAction("product_index");
+            }
             return View();
         }
 
