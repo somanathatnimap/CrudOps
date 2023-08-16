@@ -105,9 +105,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202308101058410_First_Migration.cs" />
-    <Compile Include="Migrations\202308101058410_First_Migration.designer.cs">
-      <DependentUpon>202308101058410_First_Migration.cs</DependentUpon>
+    <Compile Include="Migrations\202308160705139_forstatus.cs" />
+    <Compile Include="Migrations\202308160705139_forstatus.designer.cs">
+      <DependentUpon>202308160705139_forstatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\categories.cs" />
@@ -140,8 +140,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202308101058410_First_Migration.resx">
-      <DependentUpon>202308101058410_First_Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202308160705139_forstatus.resx">
+      <DependentUpon>202308160705139_forstatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

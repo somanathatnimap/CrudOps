@@ -16,5 +16,8 @@ namespace Product_CRUD.Models
 
         [Required(ErrorMessage = "Please Enter category Description")]
         public string category_description { get; set; }
+
+        public bool catergory_status { get; set; }
+
     }
 }

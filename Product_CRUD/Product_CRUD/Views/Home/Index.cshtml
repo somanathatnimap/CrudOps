@@ -12,14 +12,14 @@
 @Html.Raw(TempData["Insert"])
 
 <div class="container mt-5">
-       <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover">
         <thead class="table-dark">
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Category Name</th>
                 <th scope="col">Category Description</th>
                 <th scope="col">Select Categories</th>
-                <th scope="col">Activate/Deactivate</th>
+                <th scope="col">Status</th>
                 <th scope="col">Update</th>
                 <th scope="col">Delete</th>
             </tr>
@@ -33,15 +33,27 @@
                     <td>@Html.DisplayFor(model => item.category_description)</td>
 
                     <td>
-                        <a href="@Url.Action("product_index","Home",new {id=item.id})" class="btn btn-outline-info">View</a>
+                        @if (item.catergory_status == true)
+                        {
+                            <a href="@Url.Action("product_index","Home",new {id=item.id})" class="btn btn-outline-info">View</a>
+                        }
                     </td>
-                    <td><button class="btn btn-primary">Activated</button></td>
                     <td>
-                        <a href="@Url.Action("update_categories","Home",new {id=item.id})" class="btn btn-outline-info">Update</a>
-                    <td>
-                        <a href="@Url.Action("delete_categories","Home",new {id=item.id})" class="btn btn-outline-danger">Delete</a>
-                    </td>
+                        @using (Html.BeginForm("Catergory_Status", "Home", new { id = item.id }))
+                        {
+                            <input type="submit" class="btn btn-outline-primary" value="@(item.catergory_status ? "Deactivate" : "Activate")" />
+                        }
 
+                    </td>
+                    @if (item.catergory_status == true)
+                    {
+                        <td>
+                            <a href="@Url.Action("update_categories","Home",new {id=item.id})" class="btn btn-outline-info">Update</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("delete_categories","Home",new {id=item.id})" class="btn btn-outline-danger">Delete</a>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

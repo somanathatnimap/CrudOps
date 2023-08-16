@@ -7,13 +7,13 @@ namespace Product_CRUD.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class First_Migration : IMigrationMetadata
+    public sealed partial class forstatus : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(First_Migration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(forstatus));
         
         string IMigrationMetadata.Id
         {
-            get { return "202308101058410_First_Migration"; }
+            get { return "202308160705139_forstatus"; }
         }
         
         string IMigrationMetadata.Source
