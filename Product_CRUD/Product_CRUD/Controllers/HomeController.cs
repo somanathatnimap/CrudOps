@@ -18,12 +18,25 @@ namespace Product_CRUD.Controllers
         {
             return View();
         }
-        public async Task<ActionResult> Index()
-        {
-             var c_data = await db.categories.ToListAsync();
-             return View(c_data);
+        /* public async Task<ActionResult> Index()
+         {
+              var c_data = await db.categories.ToListAsync();
+              return View(c_data);
 
+         } */
+
+        public async Task<ActionResult> Index(int page = 1, int pageSize = 5)
+        {
+            var c_data = await db.categories.OrderBy(c => c.id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            int totalItems = await db.categories.CountAsync();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            ViewBag.TotalPages = totalPages;
+            ViewBag.CurrentPage = page;
+            return View(c_data);
         }
+
+
+        //chatgpr ocde end
         public ActionResult categories()
         {
             return View();
