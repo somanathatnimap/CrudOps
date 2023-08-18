@@ -36,7 +36,6 @@ namespace Product_CRUD.Controllers
         }
 
 
-        //chatgpr ocde end
         public ActionResult categories()
         {
             return View();
