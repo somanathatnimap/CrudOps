@@ -154,5 +154,5 @@ C:\Users\Nimap\Downloads\CrudOps-MVC_Model\CrudOps-MVC_Model\Product_CRUD\Produc
 C:\Users\Nimap\Downloads\CrudOps-MVC_Model\CrudOps-MVC_Model\Product_CRUD\Product_CRUD\obj\Debug\Product_CRUD.csproj.CopyComplete
 C:\Users\Nimap\Downloads\CrudOps-MVC_Model\CrudOps-MVC_Model\Product_CRUD\Product_CRUD\obj\Debug\Product_CRUD.dll
 C:\Users\Nimap\Downloads\CrudOps-MVC_Model\CrudOps-MVC_Model\Product_CRUD\Product_CRUD\obj\Debug\Product_CRUD.pdb
-C:\Users\Nimap\Desktop\MVC Projects\Product_CRUD\Product_CRUD\obj\Debug\Product_CRUD.Migrations.forstatus.resources
+C:\Users\Nimap\Desktop\MVC Projects\Product_CRUD\Product_CRUD\obj\Debug\Product_CRUD.Migrations.cattoproduct.resources
 C:\Users\Nimap\Desktop\MVC Projects\Product_CRUD\Product_CRUD\obj\Debug\Product_CRUD.csproj.GenerateResource.cache

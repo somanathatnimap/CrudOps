@@ -105,9 +105,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202308160705139_forstatus.cs" />
-    <Compile Include="Migrations\202308160705139_forstatus.designer.cs">
-      <DependentUpon>202308160705139_forstatus.cs</DependentUpon>
+    <Compile Include="Migrations\202308280648590_cat-to-product.cs" />
+    <Compile Include="Migrations\202308280648590_cat-to-product.designer.cs">
+      <DependentUpon>202308280648590_cat-to-product.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\categories.cs" />
@@ -140,8 +140,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202308160705139_forstatus.resx">
-      <DependentUpon>202308160705139_forstatus.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202308280648590_cat-to-product.resx">
+      <DependentUpon>202308280648590_cat-to-product.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

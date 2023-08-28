@@ -1,0 +1,22 @@
+﻿@*@model IEnumerable <Authorizationfilters.cs.Models.User>*@
+
+@model Authorizationfilters.cs.Models.User
+@{
+    ViewBag.Title = "Login";
+}
+<h2>Login</h2>
+<p>@Html.ViewBag.error</p>
+@using (Html.BeginForm("Login", "Login"))
+
+{
+    @Html.Label("email")
+    @Html.TextBox("email")
+    <br />
+
+    @Html.Label("password")
+    @Html.TextBox("password")
+
+    <input type="submit" value="submit" />
+    <br />
+
+}
