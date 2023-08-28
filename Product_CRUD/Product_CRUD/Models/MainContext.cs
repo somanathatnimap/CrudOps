@@ -10,5 +10,7 @@ namespace Product_CRUD.Models
     {
        public DbSet<categories> categories { get; set; }
        public DbSet<Products> products { get; set; }
+
+        object placeHolderVariable;
     }
 }
