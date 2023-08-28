@@ -110,6 +110,10 @@
     <Compile Include="Migrations\202308280648590_cat-to-product.designer.cs">
       <DependentUpon>202308280648590_cat-to-product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202308280906102_user.cs" />
+    <Compile Include="Migrations\202308280906102_user.designer.cs">
+      <DependentUpon>202308280906102_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\categories.cs" />
     <Compile Include="Models\MainContext.cs" />
@@ -131,6 +135,8 @@
     <Content Include="Views\Home\products.cshtml" />
     <Content Include="Views\Home\product_update.cshtml" />
     <Content Include="Views\Home\product_delete.cshtml" />
+    <Content Include="Views\User\Signup.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,6 +150,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202308280648590_cat-to-product.resx">
       <DependentUpon>202308280648590_cat-to-product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308280906102_user.resx">
+      <DependentUpon>202308280906102_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

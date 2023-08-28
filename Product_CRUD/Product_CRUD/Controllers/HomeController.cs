@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Product_CRUD.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         MainContext db=new MainContext();
@@ -27,15 +28,15 @@ namespace Product_CRUD.Controllers
 
         public async Task<ActionResult> Index(int page = 1, int pageSize = 5)
         {
+            var username = Request.Cookies["username"].Value;
             var c_data = await db.categories.OrderBy(c => c.id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
             int totalItems = await db.categories.CountAsync();
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            ViewBag.username=username;
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = page;
             return View(c_data);
         }
-
-
         public ActionResult categories()
         {
             return View();
