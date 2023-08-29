@@ -5,12 +5,11 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2> Welcome Here is List of Categories...!</h2>
+<h2> Welcome @TempData["userRole"] Here is List of Categories...!</h2>
 <a href="@Url.Action("Categories","Home")" class="btn btn-outline-dark">Create New</a>
 
 @*table started*@
-@Html.Raw(TempData["Insert"])
-
+<center><p style='color: red;'>@Html.Raw(TempData["Insert"])</p></center>
 <div class="container mt-5">
     <table class="table table-bordered table-hover">
         <thead class="table-dark">

@@ -18,6 +18,7 @@
 <a href="@Url.Action("products","Home")" class="btn btn-outline-dark">Create New</a>
 @*<a href="@Url.Action("update_categories","Home",new {id=})" class="btn btn-outline-info">Update</a>*@
 
+<center><p style='color: red;'>@Html.Raw(TempData["Insert"])</p></center>
 
 @*table started*@
 <div class="container mt-5">

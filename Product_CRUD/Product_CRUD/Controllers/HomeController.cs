@@ -13,7 +13,7 @@ namespace Product_CRUD.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        MainContext db=new MainContext();
+        MainContext db = new MainContext();
         // GET: Home
         public ActionResult Dashboard()
         {
@@ -27,19 +27,37 @@ namespace Product_CRUD.Controllers
          } */
 
         public async Task<ActionResult> Index(int page = 1, int pageSize = 5)
-        {
+        { var userRole=GetUserRole();
+            if(userRole == "admin")
+            {
+                TempData["userRole"] = "Admin";
+            }
+            else
+            {
+                TempData["userRole"] = "User";
+            }
             var username = Request.Cookies["username"].Value;
             var c_data = await db.categories.OrderBy(c => c.id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
             int totalItems = await db.categories.CountAsync();
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-            ViewBag.username=username;
+            ViewBag.username = username;
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = page;
             return View(c_data);
         }
         public ActionResult categories()
         {
+            var userRole=GetUserRole();
+            if(userRole=="admin")
+            {
+
             return View();
+            }
+            else
+            {
+                TempData["Insert"] = "Only Admin have permission to perform this action.";
+                return RedirectToAction("Index");
+            }
         }
         [HttpPost]
         public async Task<ActionResult> categories(categories cat)
@@ -47,27 +65,53 @@ namespace Product_CRUD.Controllers
             if (ModelState.IsValid)
             {
                 db.categories.Add(cat);
-                int a=await db.SaveChangesAsync();
-                if(a>0)
+                int a = await db.SaveChangesAsync();
+                if (a > 0)
                 {
-                    TempData["Insert"]  = "<script>alert('Data Inserted Succesfully...!')</script>";
+                    TempData["Insert"] = "<script>alert('Data Inserted Successfully...!')</script>";
                 }
-                
             }
             else
             {
                 TempData["Insert"] = "Please Insert Valid Data";
                 return View();
             }
-
             return RedirectToAction("Index");
+        }
+        //method form user authorization
+        private string GetUserRole()
+        {
+            var username = Request.Cookies["username"].Value;
+            var user = db.Users.SingleOrDefault(u => u.Email == username);
+            if (user != null)
+            {
+                if (user.Role == true)
+                {
+                    return "admin";
+                }
+                else
+                {
+                    return "user";
+                }
+            }
+            return "user";
         }
         public async Task<ActionResult> update_categories(int id)
         {
-            var row = await Task.Run(() => {
-                return db.categories.Where(Model => Model.id == id).ToList().FirstOrDefault();
+            var userRole=GetUserRole();
+            if (userRole == "admin")
+            {
+                var row = await Task.Run(() =>
+                {
+                    return db.categories.Where(Model => Model.id == id).ToList().FirstOrDefault();
                 });
-            return View(row);
+                return View(row);
+            }
+            else
+            {
+                TempData["Insert"] = "You do not have permission to perform this action.";
+                return RedirectToAction("Index");
+            }
         }
         [HttpPost]
         public async Task<ActionResult> update_categories(categories category)
@@ -85,8 +129,17 @@ namespace Product_CRUD.Controllers
         }
         public async Task<ActionResult> delete_categories(int id)
         {
+            var userRole=GetUserRole();
+            if(userRole == "admin")
+            {
             var row = db.categories.Where(Model => Model.id == id).ToList().FirstOrDefault();
             return View(row);
+            }
+            else
+            {
+                TempData["Insert"] = "You do not have permission to perform this action.";
+                return RedirectToAction("Index");
+            }
         }
         [HttpPost]
         public async Task<ActionResult> delete_categories(categories category)
@@ -110,7 +163,16 @@ namespace Product_CRUD.Controllers
         }
         public async Task<ActionResult> products()
         {
+            var userRole = GetUserRole();
+            if(userRole=="admin")
+            {
             return View();
+            }
+            else
+            {
+                TempData["Insert"] = "You do not have permission to perform this action.";
+                return RedirectToAction("Index");
+            }
         }
         [HttpPost]
         public async Task<ActionResult> products(Products products)
@@ -127,15 +189,24 @@ namespace Product_CRUD.Controllers
                 }
             }
             else{
-                TempData["create"] = "<script>alert('Product Inserted Succesfully...!')</script>";
+                TempData["create"] = "<script>alert('Product Not Inserted Succesfully...!')</script>";
                 return View();
             }
             return View();
         }
         public async Task<ActionResult> product_update(int id)
         {
+            var userRole = GetUserRole();
+            if (userRole == "admin")
+            {
             var p_data = await db.products.Where(Model => Model.id == id).FirstOrDefaultAsync();
             return View(p_data);
+            }
+            else
+            {
+                TempData["Insert"] = "You do not have permission to perform this action.";
+                return RedirectToAction("Index");
+            }
         }
         [HttpPost]
         public async Task<ActionResult> product_update(Products products)
@@ -157,8 +228,17 @@ namespace Product_CRUD.Controllers
         }
         public async Task<ActionResult> product_delete(int id)
         {
+            var userRole = GetUserRole();
+            if(userRole== "admin")
+            {
             var p_data=await db.products.Where(Model=>Model.id==id).FirstOrDefaultAsync();
             return View(p_data);
+            }
+            else
+            {
+                TempData["Insert"] = "You do not have permission to perform this action.";
+                return RedirectToAction("Index");
+            }
         }
         [HttpPost]
         public async Task<ActionResult> product_delete(Products products)
