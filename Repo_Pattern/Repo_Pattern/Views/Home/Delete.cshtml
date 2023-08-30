@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+@using (Html.BeginForm("Delete", "Home"))
+{
+@Html.Label("Name")
+@Html.TextBox("Name")
+
+<button>submit</button>
+}
