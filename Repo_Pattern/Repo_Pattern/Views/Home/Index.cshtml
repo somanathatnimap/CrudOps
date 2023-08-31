@@ -4,23 +4,25 @@
 }
 @model IEnumerable<Repo_Pattern.Models.Student>
 <h2>Index</h2>
+<a href="@Url.Action("Create","Home")">Create</a>
 
-@foreach(var m in Model)
-{
-   <table border="1">
-       <tr>
-           <th> ID</th>
-           <th> Name</th>
-           <th>Edit</th>
-           <th> Delete</th>
-       </tr>
-       <tr>
-           <th> @m.Id</th>
-           <th> @m.Name</th>
-           <th><a href="@Url.Action("Edit","Home", new {id=m.Id})">Edit</th>
-           <th><a href="@Url.Action("Delete","Home", new {id=m.Id})">Delete</th>
-       </tr> 
-   </table>
-                
-                
-            }
+<table border="1">
+    <tr>
+        <th> ID</th>
+        <th> Name</th>
+        <th>Edit</th>
+        <th> Delete</th>
+    </tr>
+    @foreach (var m in Model)
+    {
+
+        <tr>
+            <th> @m.Id</th>
+            <th> @m.Name</th>
+            <th><a href="@Url.Action("Edit","Home", new {id=m.Id})">Edit</th>
+            <th><a href="@Url.Action("Delete","Home", new {id=m.Id})">Delete</th>
+        </tr>
+
+    }
+</table>
+
