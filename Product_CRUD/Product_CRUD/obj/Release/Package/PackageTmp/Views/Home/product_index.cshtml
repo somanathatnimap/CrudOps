@@ -1,0 +1,59 @@
+﻿
+@model IEnumerable<Product_CRUD.Models.Products>
+@{
+
+    ViewBag.Title = "product_index";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Raw(TempData["create"])
+@Html.Raw(TempData["update"])
+@Html.Raw(TempData["delete"])
+
+
+<h2>Products...!</h2>
+<a href="@Url.Action("products","Home")" class="btn btn-outline-dark">Create New</a>
+@*<a href="@Url.Action("update_categories","Home",new {id=})" class="btn btn-outline-info">Update</a>*@
+
+<center><p style='color: red;'>@Html.Raw(TempData["Insert"])</p></center>
+
+@*table started*@
+<div class="container mt-5">
+    <h2 class="mb-4"><span style="color:forestgreen"> @TempData["categories_name"]</span> Category</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Prize</th>
+                <th scope="col">Product Description</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <th scope="row">@Html.DisplayFor(ModelItem => item.id)</th>
+                    <td>@Html.DisplayFor(model => item.Product_name)</td>
+                    <td>@Html.DisplayFor(model => item.Product_price)</td>
+                    <td>@Html.DisplayFor(model => item.Product_description)</td>
+                    <td>
+                        <a href="@Url.Action("product_update","Home",new {id=item.id})" class="btn btn-outline-info">Update</a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("product_delete","Home",new {id=item.id})" class="btn btn-outline-danger">Delete</a>
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
